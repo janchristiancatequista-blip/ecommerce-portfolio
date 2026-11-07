@@ -1,0 +1,13 @@
+{
+  "name": "ecommerce-portfolio",
+  "version": "1.0.0",
+  "description": "Five responsive e-commerce storefronts built with semantic HTML, modern CSS and vanilla JavaScript.",
+  "private": true,
+  "scripts": {
+    "start": "npx --yes serve . -l 5173",
+    "format": "npx --yes prettier --write \"**/*.{html,css,js,md}\"",
+    "format:check": "npx --yes prettier --check \"**/*.{html,css,js,md}\""
+  },
+  "keywords": ["ecommerce", "frontend", "vanilla-js", "responsive", "accessibility", "portfolio"],
+  "license": "MIT"
+}
