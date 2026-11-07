@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THREAD — Everyday Essentials</title>
+  <meta name="description" content="THREAD is a fashion store demo with hash routing, product detail pages, size and colour variants, and a wishlist." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="announce">Free returns · Carbon-neutral delivery · Use code <b>THREAD10</b> for 10% off</div>
+
+  <header class="header">
+    <div class="shell header-inner">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav" id="mainNav" aria-label="Main">
+        <a href="#/shop/women">Women</a>
+        <a href="#/shop/men">Men</a>
+        <a href="#/shop/all">All</a>
+      </nav>
+      <a href="#/" class="brand">THREAD</a>
+      <div class="header-actions">
+        <a href="#/wishlist" class="icon-link" aria-label="Wishlist">♡ <span id="wishCount">0</span></a>
+        <a href="#/bag" class="icon-link" aria-label="Bag">Bag <span id="bagCount">0</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="app" class="shell" tabindex="-1"></main>
+
+  <footer class="footer">
+    <div class="shell footer-grid">
+      <div><span class="brand">THREAD</span><p>Fewer, better clothes.</p></div>
+      <div><h4>Help</h4><a href="#/">Shipping</a><a href="#/">Returns</a><a href="#/">Size guide</a></div>
+      <div><h4>About</h4><a href="#/">Materials</a><a href="#/">Factories</a><a href="#/">Careers</a></div>
+    </div>
+    <p class="shell fine">© 2026 THREAD — front-end portfolio demo.</p>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

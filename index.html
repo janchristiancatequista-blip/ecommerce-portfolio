@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-commerce Front-end Portfolio</title>
+  <meta name="description" content="Five e-commerce front-end projects built with semantic HTML, modern CSS and vanilla JavaScript." />
+  <style>
+    :root { --bg: #fafafa; --ink: #141414; --muted: #666; --line: #e5e5e5; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+    main { width: min(1100px, 100% - 2.5rem); margin: 0 auto; padding: 4rem 0; }
+    h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.1; letter-spacing: -.02em; }
+    .intro { color: var(--muted); max-width: 60ch; margin: 1rem 0 3rem; font-size: 1.1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.25rem; }
+    .card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; text-decoration: none; color: inherit; transition: transform .25s, box-shadow .25s; }
+    .card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.08); }
+    .swatch { height: 140px; display: flex; align-items: flex-end; padding: 1rem 1.25rem; font-weight: 800; font-size: 1.6rem; }
+    .body { padding: 1.25rem; display: grid; gap: .6rem; }
+    .body p { color: var(--muted); font-size: .95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .tags span { font-size: .75rem; border: 1px solid var(--line); border-radius: 999px; padding: .15rem .6rem; color: #444; }
+    footer { margin-top: 3rem; color: var(--muted); font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>E-commerce front-end projects</h1>
+    <p class="intro">Five storefronts built with semantic HTML, modern CSS and vanilla JavaScript, with no frameworks or build step. Each one covers a different set of front-end problems.</p>
+
+    <div class="grid">
+      <a class="card" href="01-lumen-home/index.html">
+        <div class="swatch" style="background:#e7d8c6;color:#2b2723;font-family:Georgia,serif;font-weight:400">Lumen.</div>
+        <div class="body">
+          <strong>Minimalist home goods</strong>
+          <p>Category chips, sorting, quick-view modal using native &lt;dialog&gt;, slide-out cart drawer with a free-shipping progress bar.</p>
+          <div class="tags"><span>Event delegation</span><span>localStorage</span><span>&lt;dialog&gt;</span><span>Form validation</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="02-volt-electronics/index.html">
+        <div class="swatch" style="background:#0b0d12;color:#c6ff3d;letter-spacing:.12em">⚡ VOLT</div>
+        <div class="body">
+          <strong>Dark-mode electronics store</strong>
+          <p>Debounced search with match highlighting, multi-facet filters, price range slider, and a side-by-side compare table for up to 3 products.</p>
+          <div class="tags"><span>Faceted search</span><span>Debounce</span><span>Compare</span><span>Keyboard shortcut</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="03-thread-fashion/index.html">
+        <div class="swatch" style="background:#d9d4c7;color:#111;letter-spacing:.3em;font-weight:900">THREAD</div>
+        <div class="body">
+          <strong>Fashion SPA</strong>
+          <p>Hash-based router with home, listing, product detail, wishlist and bag views. Colour and size variants, sold-out states, promo codes.</p>
+          <div class="tags"><span>Client-side routing</span><span>Variants</span><span>Wishlist</span><span>Mobile menu</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="04-bloom-grocery/index.html">
+        <div class="swatch" style="background:linear-gradient(120deg,#1f6b38,#2f8f4e);color:#fff">🌿 bloom</div>
+        <div class="body">
+          <strong>Grocery delivery</strong>
+          <p>Three-column app layout, inline quantity steppers, live basket, delivery-slot picker with date logic and postcode validation.</p>
+          <div class="tags"><span>CSS Grid</span><span>Intl API</span><span>Custom toggle</span><span>Responsive drawer</span></div>
+        </div>
+      </a>
+
+      <a class="card" href="05-paperback-books/index.html">
+        <div class="swatch" style="background:#fbf7ef;color:#a8322d;font-family:Georgia,serif;border-bottom:3px double #1f1c18">Paperback &amp; Co.</div>
+        <div class="body">
+          <strong>Independent bookshop</strong>
+          <p>Book covers generated in CSS, search, genre filter and sorting, pagination, and a 4-step checkout with accessible inline validation.</p>
+          <div class="tags"><span>Pagination</span><span>Multi-step form</span><span>Constraint Validation API</span><span>:has()</span></div>
+        </div>
+      </a>
+    </div>
+
+    <footer>All products, brands and books are fictional. No real orders or payments are processed.</footer>
+  </main>
+</body>
+</html>
