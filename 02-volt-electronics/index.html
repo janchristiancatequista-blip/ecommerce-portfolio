@@ -1,118 +1,158 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Volt — Electronics & Gear</title>
-  <meta name="description" content="Volt is a dark-themed electronics store with search, filters, and product comparison." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a href="#" class="logo"><span class="bolt">⚡</span>VOLT</a>
-      <div class="search">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
-        <label for="searchInput" class="sr-only">Search products</label>
-        <input id="searchInput" type="search" placeholder="Search laptops, audio, cameras…  ( / )" autocomplete="off" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Volt — Electronics & Gear</title>
+    <meta
+      name="description"
+      content="Volt is a dark-themed electronics store with search, filters, and product comparison."
+    />
+    <meta name="theme-color" content="#0b0d12" />
+    <meta name="color-scheme" content="dark" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Volt — Electronics & Gear" />
+    <meta
+      property="og:description"
+      content="Volt is a dark-themed electronics store with search, filters, and product comparison."
+    />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%230b0d12'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23c6ff3d'%3EV%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="wrap topbar-inner">
+        <a href="#" class="logo"><span class="bolt">⚡</span>VOLT</a>
+        <div class="search">
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            aria-hidden="true"
+          >
+            <circle cx="11" cy="11" r="7" />
+            <path d="m20 20-4-4" />
+          </svg>
+          <label for="searchInput" class="sr-only">Search products</label>
+          <input
+            id="searchInput"
+            type="search"
+            placeholder="Search laptops, audio, cameras…  ( / )"
+            autocomplete="off"
+          />
+        </div>
+        <button class="cart-pill" id="cartBtn" aria-label="Cart">
+          Cart <span id="cartCount">0</span> · <span id="cartTotal">$0</span>
+        </button>
       </div>
-      <button class="cart-pill" id="cartBtn" aria-label="Cart">
-        Cart <span id="cartCount">0</span> · <span id="cartTotal">$0</span>
-      </button>
-    </div>
-  </header>
+    </header>
 
-  <section class="hero wrap">
-    <div class="hero-card">
-      <p class="mono tag">// NEW DROP</p>
-      <h1>Gear that keeps up<br />with <span class="grad">your ideas.</span></h1>
-      <p>Curated tech from the brands builders trust. Free 2-day shipping, 2-year warranty on everything.</p>
-    </div>
-    <div class="stats">
-      <div><strong class="mono">24h</strong><span>Dispatch</span></div>
-      <div><strong class="mono">2yr</strong><span>Warranty</span></div>
-      <div><strong class="mono">4.9★</strong><span>Avg rating</span></div>
-    </div>
-  </section>
-
-  <main class="wrap layout">
-    <aside class="filters" aria-label="Filters">
-      <div class="filters-head">
-        <h2>Filters</h2>
-        <button class="link" id="resetFilters">Reset</button>
+    <section class="hero wrap">
+      <div class="hero-card">
+        <p class="mono tag">// NEW DROP</p>
+        <h1>Gear that keeps up<br />with <span class="grad">your ideas.</span></h1>
+        <p>Curated tech from the brands builders trust. Free 2-day shipping, 2-year warranty on everything.</p>
       </div>
-
-      <fieldset>
-        <legend>Category</legend>
-        <div id="categoryFilters"></div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Brand</legend>
-        <div id="brandFilters"></div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Max price: <span class="mono" id="priceLabel"></span></legend>
-        <input type="range" id="priceRange" min="50" max="2500" step="50" />
-      </fieldset>
-
-      <fieldset>
-        <legend>Rating</legend>
-        <label class="check"><input type="checkbox" id="highRated" /> 4.5★ & up</label>
-      </fieldset>
-    </aside>
-
-    <section aria-label="Products">
-      <div class="results-bar">
-        <p><span class="mono" id="resultCount">0</span> products</p>
-        <select id="sortSelect" aria-label="Sort">
-          <option value="pop">Most popular</option>
-          <option value="low">Price ↑</option>
-          <option value="high">Price ↓</option>
-          <option value="rating">Top rated</option>
-        </select>
+      <div class="stats">
+        <div><strong class="mono">24h</strong><span>Dispatch</span></div>
+        <div><strong class="mono">2yr</strong><span>Warranty</span></div>
+        <div><strong class="mono">4.9★</strong><span>Avg rating</span></div>
       </div>
-      <div class="grid" id="grid"></div>
-      <p class="no-results" id="noResults" hidden>No products match those filters. <button class="link" id="resetFilters2">Clear filters</button></p>
     </section>
-  </main>
 
-  <!-- Compare tray -->
-  <div class="compare-tray" id="compareTray" hidden>
-    <div class="wrap compare-inner">
-      <div class="compare-slots" id="compareSlots"></div>
-      <button class="btn" id="compareOpen">Compare</button>
+    <main class="wrap layout">
+      <aside class="filters" aria-label="Filters">
+        <div class="filters-head">
+          <h2>Filters</h2>
+          <button class="link" id="resetFilters">Reset</button>
+        </div>
+
+        <fieldset>
+          <legend>Category</legend>
+          <div id="categoryFilters"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Brand</legend>
+          <div id="brandFilters"></div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Max price: <span class="mono" id="priceLabel"></span></legend>
+          <input type="range" id="priceRange" min="50" max="2500" step="50" />
+        </fieldset>
+
+        <fieldset>
+          <legend>Rating</legend>
+          <label class="check"><input type="checkbox" id="highRated" /> 4.5★ & up</label>
+        </fieldset>
+      </aside>
+
+      <section aria-label="Products">
+        <div class="results-bar">
+          <p><span class="mono" id="resultCount">0</span> products</p>
+          <select id="sortSelect" aria-label="Sort">
+            <option value="pop">Most popular</option>
+            <option value="low">Price ↑</option>
+            <option value="high">Price ↓</option>
+            <option value="rating">Top rated</option>
+          </select>
+        </div>
+        <div class="grid" id="grid"></div>
+        <p class="no-results" id="noResults" hidden>
+          No products match those filters. <button class="link" id="resetFilters2">Clear filters</button>
+        </p>
+      </section>
+    </main>
+
+    <!-- Compare tray -->
+    <div class="compare-tray" id="compareTray" hidden>
+      <div class="wrap compare-inner">
+        <div class="compare-slots" id="compareSlots"></div>
+        <button class="btn" id="compareOpen">Compare</button>
+      </div>
     </div>
-  </div>
 
-  <dialog id="compareDialog" class="dialog">
-    <div class="dialog-head">
-      <h2>Compare</h2>
-      <button class="x" id="compareClose" aria-label="Close">✕</button>
-    </div>
-    <div class="table-wrap"><table id="compareTable"></table></div>
-  </dialog>
+    <dialog id="compareDialog" class="dialog">
+      <div class="dialog-head">
+        <h2>Compare</h2>
+        <button class="x" id="compareClose" aria-label="Close">✕</button>
+      </div>
+      <div class="table-wrap"><table id="compareTable"></table></div>
+    </dialog>
 
-  <dialog id="cartDialog" class="dialog dialog-side">
-    <div class="dialog-head">
-      <h2>Cart</h2>
-      <button class="x" id="cartClose" aria-label="Close">✕</button>
-    </div>
-    <ul id="cartList" class="cart-list"></ul>
-    <div class="cart-summary">
-      <div><span>Subtotal</span><span class="mono" id="sumSub"></span></div>
-      <div><span>Tax (8%)</span><span class="mono" id="sumTax"></span></div>
-      <div class="total"><span>Total</span><span class="mono" id="sumTotal"></span></div>
-      <button class="btn btn-block" id="checkout">Checkout</button>
-    </div>
-  </dialog>
+    <dialog id="cartDialog" class="dialog dialog-side">
+      <div class="dialog-head">
+        <h2>Cart</h2>
+        <button class="x" id="cartClose" aria-label="Close">✕</button>
+      </div>
+      <ul id="cartList" class="cart-list"></ul>
+      <div class="cart-summary">
+        <div><span>Subtotal</span><span class="mono" id="sumSub"></span></div>
+        <div><span>Tax (8%)</span><span class="mono" id="sumTax"></span></div>
+        <div class="total"><span>Total</span><span class="mono" id="sumTotal"></span></div>
+        <button class="btn btn-block" id="checkout">Checkout</button>
+      </div>
+    </dialog>
 
-  <footer class="wrap footer mono">© 2026 VOLT — front-end demo. Not a real store.</footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="app.js"></script>
-</body>
+    <footer class="wrap footer mono">© 2026 VOLT — front-end demo. Not a real store.</footer>
+
+    <script src="app.js"></script>
+  </body>
 </html>

@@ -1,123 +1,182 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Paperback — Independent Bookshop</title>
-  <meta name="description" content="Paperback is a bookstore demo with generated covers, search, pagination, and a multi-step validated checkout." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="masthead">
-    <div class="inner">
-      <a href="#" class="wordmark">Paperback<em>&amp; Co.</em></a>
-      <p class="tagline">An independent bookshop · Est. 1987</p>
-      <button class="tote" id="toteBtn">Your tote (<span id="toteCount">0</span>)</button>
-    </div>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Paperback — Independent Bookshop</title>
+    <meta
+      name="description"
+      content="Paperback is a bookstore demo with generated covers, search, pagination, and a multi-step validated checkout."
+    />
+    <meta name="theme-color" content="#a8322d" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Paperback — Independent Bookshop" />
+    <meta
+      property="og:description"
+      content="Paperback is a bookstore demo with generated covers, search, pagination, and a multi-step validated checkout."
+    />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='2' fill='%23a8322d'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23fbf7ef'%3EP%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="masthead">
+      <div class="inner">
+        <a href="#" class="wordmark">Paperback<em>&amp; Co.</em></a>
+        <p class="tagline">An independent bookshop · Est. 1987</p>
+        <button class="tote" id="toteBtn">Your tote (<span id="toteCount">0</span>)</button>
+      </div>
+    </header>
 
-  <main class="inner">
-    <section class="pick">
-      <div class="pick-copy">
-        <span class="kicker">Staff pick of the month</span>
-        <h1 id="pickTitle"></h1>
-        <p id="pickBlurb"></p>
-        <div class="pick-actions">
-          <button class="btn" id="pickAdd">Add to tote</button>
-          <button class="btn btn-line" id="pickMore">Read more</button>
+    <main class="inner">
+      <section class="pick">
+        <div class="pick-copy">
+          <span class="kicker">Staff pick of the month</span>
+          <h1 id="pickTitle"></h1>
+          <p id="pickBlurb"></p>
+          <div class="pick-actions">
+            <button class="btn" id="pickAdd">Add to tote</button>
+            <button class="btn btn-line" id="pickMore">Read more</button>
+          </div>
+        </div>
+        <div class="pick-cover" id="pickCover"></div>
+      </section>
+
+      <section class="catalogue" aria-labelledby="catTitle">
+        <div class="cat-head">
+          <h2 id="catTitle">The shelves</h2>
+          <div class="controls">
+            <input type="search" id="q" placeholder="Title or author…" aria-label="Search by title or author" />
+            <select id="genre" aria-label="Genre"></select>
+            <select id="sort" aria-label="Sort">
+              <option value="title">Title A–Z</option>
+              <option value="author">Author A–Z</option>
+              <option value="rating">Highest rated</option>
+              <option value="price">Lowest price</option>
+              <option value="year">Newest</option>
+            </select>
+          </div>
+        </div>
+        <p class="summary" id="summary"></p>
+        <div class="shelf" id="shelf"></div>
+        <nav class="pager" id="pager" aria-label="Pagination"></nav>
+      </section>
+    </main>
+
+    <footer class="colophon inner">
+      <p>Paperback &amp; Co. · 14 Mercer Lane · Front-end portfolio demo — books and authors are fictional.</p>
+    </footer>
+
+    <!-- Book detail -->
+    <dialog id="bookDialog" class="sheet">
+      <button class="close" data-close aria-label="Close">✕</button>
+      <div id="bookBody" class="book-detail"></div>
+    </dialog>
+
+    <!-- Tote + checkout -->
+    <dialog id="toteDialog" class="sheet sheet-wide">
+      <button class="close" data-close aria-label="Close">✕</button>
+      <ol class="steps" id="steps">
+        <li data-step="0">Tote</li>
+        <li data-step="1">Shipping</li>
+        <li data-step="2">Delivery</li>
+        <li data-step="3">Review</li>
+      </ol>
+
+      <div class="step-panel" data-panel="0">
+        <ul class="tote-list" id="toteList"></ul>
+        <div class="tote-foot">
+          <span>Subtotal <strong id="toteSub"></strong></span>
+          <button class="btn" data-next id="toteNext">Continue</button>
         </div>
       </div>
-      <div class="pick-cover" id="pickCover"></div>
-    </section>
 
-    <section class="catalogue" aria-labelledby="catTitle">
-      <div class="cat-head">
-        <h2 id="catTitle">The shelves</h2>
-        <div class="controls">
-          <input type="search" id="q" placeholder="Title or author…" aria-label="Search by title or author" />
-          <select id="genre" aria-label="Genre"></select>
-          <select id="sort" aria-label="Sort">
-            <option value="title">Title A–Z</option>
-            <option value="author">Author A–Z</option>
-            <option value="rating">Highest rated</option>
-            <option value="price">Lowest price</option>
-            <option value="year">Newest</option>
-          </select>
+      <form class="step-panel" data-panel="1" id="shipForm" novalidate>
+        <div class="field">
+          <label for="fName">Full name</label
+          ><input id="fName" name="name" autocomplete="name" required minlength="2" /><small></small>
+        </div>
+        <div class="field">
+          <label for="fEmail">Email</label
+          ><input id="fEmail" name="email" type="email" autocomplete="email" required /><small></small>
+        </div>
+        <div class="field">
+          <label for="fAddr">Street address</label
+          ><input id="fAddr" name="address" autocomplete="street-address" required minlength="5" /><small></small>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="fCity">City</label
+            ><input id="fCity" name="city" autocomplete="address-level2" required /><small></small>
+          </div>
+          <div class="field">
+            <label for="fZip">Postcode</label
+            ><input
+              id="fZip"
+              name="zip"
+              autocomplete="postal-code"
+              required
+              pattern="[A-Za-z0-9 \-]{3,10}"
+            /><small></small>
+          </div>
+        </div>
+        <div class="nav-row">
+          <button type="button" class="btn btn-line" data-back>Back</button><button class="btn">Continue</button>
+        </div>
+      </form>
+
+      <form class="step-panel" data-panel="2" id="deliveryForm">
+        <fieldset class="options">
+          <legend>Delivery method</legend>
+          <label class="option"
+            ><input type="radio" name="delivery" value="standard" checked /><span
+              ><strong>Standard</strong> 3–5 days</span
+            ><b>$3.95</b></label
+          >
+          <label class="option"
+            ><input type="radio" name="delivery" value="express" /><span><strong>Express</strong> next day</span
+            ><b>$8.95</b></label
+          >
+          <label class="option"
+            ><input type="radio" name="delivery" value="pickup" /><span
+              ><strong>Collect in store</strong> Mercer Lane</span
+            ><b>Free</b></label
+          >
+        </fieldset>
+        <label class="gift"><input type="checkbox" id="giftWrap" /> Gift wrap in our signature paper (+$2.50)</label>
+        <div class="nav-row">
+          <button type="button" class="btn btn-line" data-back>Back</button><button class="btn">Review order</button>
+        </div>
+      </form>
+
+      <div class="step-panel" data-panel="3">
+        <div id="review"></div>
+        <div class="nav-row">
+          <button type="button" class="btn btn-line" data-back>Back</button
+          ><button class="btn" id="placeOrder">Place order</button>
         </div>
       </div>
-      <p class="summary" id="summary"></p>
-      <div class="shelf" id="shelf"></div>
-      <nav class="pager" id="pager" aria-label="Pagination"></nav>
-    </section>
-  </main>
 
-  <footer class="colophon inner">
-    <p>Paperback &amp; Co. · 14 Mercer Lane · Front-end portfolio demo — books and authors are fictional.</p>
-  </footer>
-
-  <!-- Book detail -->
-  <dialog id="bookDialog" class="sheet">
-    <button class="close" data-close aria-label="Close">✕</button>
-    <div id="bookBody" class="book-detail"></div>
-  </dialog>
-
-  <!-- Tote + checkout -->
-  <dialog id="toteDialog" class="sheet sheet-wide">
-    <button class="close" data-close aria-label="Close">✕</button>
-    <ol class="steps" id="steps">
-      <li data-step="0">Tote</li>
-      <li data-step="1">Shipping</li>
-      <li data-step="2">Delivery</li>
-      <li data-step="3">Review</li>
-    </ol>
-
-    <div class="step-panel" data-panel="0">
-      <ul class="tote-list" id="toteList"></ul>
-      <div class="tote-foot">
-        <span>Subtotal <strong id="toteSub"></strong></span>
-        <button class="btn" data-next id="toteNext">Continue</button>
+      <div class="step-panel" data-panel="4">
+        <div class="thanks">
+          <h2>Thank you!</h2>
+          <p id="thanksText"></p>
+          <button class="btn" data-close>Back to the shelves</button>
+        </div>
       </div>
-    </div>
+    </dialog>
 
-    <form class="step-panel" data-panel="1" id="shipForm" novalidate>
-      <div class="field"><label for="fName">Full name</label><input id="fName" name="name" autocomplete="name" required minlength="2" /><small></small></div>
-      <div class="field"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" autocomplete="email" required /><small></small></div>
-      <div class="field"><label for="fAddr">Street address</label><input id="fAddr" name="address" autocomplete="street-address" required minlength="5" /><small></small></div>
-      <div class="field-row">
-        <div class="field"><label for="fCity">City</label><input id="fCity" name="city" autocomplete="address-level2" required /><small></small></div>
-        <div class="field"><label for="fZip">Postcode</label><input id="fZip" name="zip" autocomplete="postal-code" required pattern="[A-Za-z0-9 \-]{3,10}" /><small></small></div>
-      </div>
-      <div class="nav-row"><button type="button" class="btn btn-line" data-back>Back</button><button class="btn">Continue</button></div>
-    </form>
-
-    <form class="step-panel" data-panel="2" id="deliveryForm">
-      <fieldset class="options">
-        <legend>Delivery method</legend>
-        <label class="option"><input type="radio" name="delivery" value="standard" checked /><span><strong>Standard</strong> 3–5 days</span><b>$3.95</b></label>
-        <label class="option"><input type="radio" name="delivery" value="express" /><span><strong>Express</strong> next day</span><b>$8.95</b></label>
-        <label class="option"><input type="radio" name="delivery" value="pickup" /><span><strong>Collect in store</strong> Mercer Lane</span><b>Free</b></label>
-      </fieldset>
-      <label class="gift"><input type="checkbox" id="giftWrap" /> Gift wrap in our signature paper (+$2.50)</label>
-      <div class="nav-row"><button type="button" class="btn btn-line" data-back>Back</button><button class="btn">Review order</button></div>
-    </form>
-
-    <div class="step-panel" data-panel="3">
-      <div id="review"></div>
-      <div class="nav-row"><button type="button" class="btn btn-line" data-back>Back</button><button class="btn" id="placeOrder">Place order</button></div>
-    </div>
-
-    <div class="step-panel" data-panel="4">
-      <div class="thanks">
-        <h2>Thank you!</h2>
-        <p id="thanksText"></p>
-        <button class="btn" data-close>Back to the shelves</button>
-      </div>
-    </div>
-  </dialog>
-
-  <script src="app.js"></script>
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>

@@ -1,121 +1,155 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lumen — Considered Home Goods</title>
-  <meta name="description" content="Lumen is a minimalist home goods store: furniture, lighting and ceramics." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <a class="skip-link" href="#shop">Skip to products</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Lumen — Considered Home Goods</title>
+    <meta name="description" content="Lumen is a minimalist home goods store: furniture, lighting and ceramics." />
+    <meta name="theme-color" content="#2b2723" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lumen — Considered Home Goods" />
+    <meta
+      property="og:description"
+      content="Lumen is a minimalist home goods store: furniture, lighting and ceramics."
+    />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232b2723'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23e7d8c6'%3EL%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#shop">Skip to products</a>
 
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="#" class="logo">Lumen<span>.</span></a>
-      <nav class="main-nav" aria-label="Main">
-        <a href="#shop">Shop</a>
-        <a href="#story">Our story</a>
-        <a href="#journal">Journal</a>
-      </nav>
-      <button class="cart-btn" id="cartOpen" aria-label="Open cart">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
-        <span class="cart-count" id="cartCount">0</span>
-      </button>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <div class="hero-copy">
-          <p class="eyebrow">Autumn collection 2026</p>
-          <h1>Quiet objects for slower living.</h1>
-          <p class="lead">Handmade furniture, lighting and ceramics crafted by small studios — designed to be lived with for decades.</p>
-          <a href="#shop" class="btn btn-dark">Shop the collection</a>
-        </div>
-        <div class="hero-art" aria-hidden="true">
-          <div class="arch"></div>
-          <div class="vase"></div>
-          <div class="sphere"></div>
-        </div>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="#" class="logo">Lumen<span>.</span></a>
+        <nav class="main-nav" aria-label="Main">
+          <a href="#shop">Shop</a>
+          <a href="#story">Our story</a>
+          <a href="#journal">Journal</a>
+        </nav>
+        <button class="cart-btn" id="cartOpen" aria-label="Open cart">
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            aria-hidden="true"
+          >
+            <path d="M6 7h12l-1 13H7L6 7Z" />
+            <path d="M9 7a3 3 0 0 1 6 0" />
+          </svg>
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
       </div>
-    </section>
+    </header>
 
-    <section class="perks container" aria-label="Store benefits">
-      <div><strong>Free shipping</strong><span>On orders over $150</span></div>
-      <div><strong>30-day returns</strong><span>No questions asked</span></div>
-      <div><strong>Made by hand</strong><span>By 40+ independent makers</span></div>
-    </section>
-
-    <section id="shop" class="shop container">
-      <div class="shop-head">
-        <h2>The collection</h2>
-        <div class="shop-controls">
-          <div class="chips" role="tablist" id="categoryChips"></div>
-          <label class="sort">
-            <span class="visually-hidden">Sort products</span>
-            <select id="sortSelect">
-              <option value="featured">Featured</option>
-              <option value="price-asc">Price: low to high</option>
-              <option value="price-desc">Price: high to low</option>
-              <option value="name">Name A–Z</option>
-            </select>
-          </label>
+    <main>
+      <section class="hero">
+        <div class="container hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Autumn collection 2026</p>
+            <h1>Quiet objects for slower living.</h1>
+            <p class="lead">
+              Handmade furniture, lighting and ceramics crafted by small studios — designed to be lived with for
+              decades.
+            </p>
+            <a href="#shop" class="btn btn-dark">Shop the collection</a>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="arch"></div>
+            <div class="vase"></div>
+            <div class="sphere"></div>
+          </div>
         </div>
+      </section>
+
+      <section class="perks container" aria-label="Store benefits">
+        <div><strong>Free shipping</strong><span>On orders over $150</span></div>
+        <div><strong>30-day returns</strong><span>No questions asked</span></div>
+        <div><strong>Made by hand</strong><span>By 40+ independent makers</span></div>
+      </section>
+
+      <section id="shop" class="shop container">
+        <div class="shop-head">
+          <h2>The collection</h2>
+          <div class="shop-controls">
+            <div class="chips" role="tablist" id="categoryChips"></div>
+            <label class="sort">
+              <span class="visually-hidden">Sort products</span>
+              <select id="sortSelect">
+                <option value="featured">Featured</option>
+                <option value="price-asc">Price: low to high</option>
+                <option value="price-desc">Price: high to low</option>
+                <option value="name">Name A–Z</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="grid" id="productGrid" aria-live="polite"></div>
+      </section>
+
+      <section id="story" class="story">
+        <div class="container story-inner">
+          <h2>Made slowly, on purpose.</h2>
+          <p>
+            Every Lumen piece is made in small batches by studios we know by name. We pay makers fairly, ship in
+            plastic-free packaging, and repair anything we sell for life.
+          </p>
+        </div>
+      </section>
+
+      <section id="journal" class="newsletter container">
+        <h2>Letters from the studio</h2>
+        <p>One thoughtful email a month. New pieces, maker stories, no noise.</p>
+        <form id="newsletterForm" class="newsletter-form" novalidate>
+          <label for="email" class="visually-hidden">Email address</label>
+          <input id="email" type="email" placeholder="you@example.com" required />
+          <button class="btn btn-dark" type="submit">Subscribe</button>
+        </form>
+        <p class="form-msg" id="newsletterMsg" role="status"></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">© 2026 Lumen Studio. A front-end demo project.</div>
+    </footer>
+
+    <!-- Cart drawer -->
+    <div class="overlay" id="overlay" hidden></div>
+    <aside class="drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+      <div class="drawer-head">
+        <h2>Your cart</h2>
+        <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
       </div>
-      <div class="grid" id="productGrid" aria-live="polite"></div>
-    </section>
-
-    <section id="story" class="story">
-      <div class="container story-inner">
-        <h2>Made slowly, on purpose.</h2>
-        <p>Every Lumen piece is made in small batches by studios we know by name. We pay makers fairly, ship in plastic-free packaging, and repair anything we sell for life.</p>
+      <div class="ship-progress" id="shipProgress"></div>
+      <ul class="cart-items" id="cartItems"></ul>
+      <div class="drawer-foot">
+        <div class="row"><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div>
+        <button class="btn btn-dark btn-block" id="checkoutBtn">Checkout</button>
       </div>
-    </section>
+    </aside>
 
-    <section id="journal" class="newsletter container">
-      <h2>Letters from the studio</h2>
-      <p>One thoughtful email a month. New pieces, maker stories, no noise.</p>
-      <form id="newsletterForm" class="newsletter-form" novalidate>
-        <label for="email" class="visually-hidden">Email address</label>
-        <input id="email" type="email" placeholder="you@example.com" required />
-        <button class="btn btn-dark" type="submit">Subscribe</button>
-      </form>
-      <p class="form-msg" id="newsletterMsg" role="status"></p>
-    </section>
-  </main>
+    <!-- Quick view modal -->
+    <dialog id="quickView" class="modal">
+      <button class="icon-btn modal-close" id="qvClose" aria-label="Close">✕</button>
+      <div class="modal-body" id="qvBody"></div>
+    </dialog>
 
-  <footer class="site-footer">
-    <div class="container">© 2026 Lumen Studio. A front-end demo project.</div>
-  </footer>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <!-- Cart drawer -->
-  <div class="overlay" id="overlay" hidden></div>
-  <aside class="drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
-    <div class="drawer-head">
-      <h2>Your cart</h2>
-      <button class="icon-btn" id="cartClose" aria-label="Close cart">✕</button>
-    </div>
-    <div class="ship-progress" id="shipProgress"></div>
-    <ul class="cart-items" id="cartItems"></ul>
-    <div class="drawer-foot">
-      <div class="row"><span>Subtotal</span><strong id="cartSubtotal">$0.00</strong></div>
-      <button class="btn btn-dark btn-block" id="checkoutBtn">Checkout</button>
-    </div>
-  </aside>
-
-  <!-- Quick view modal -->
-  <dialog id="quickView" class="modal">
-    <button class="icon-btn modal-close" id="qvClose" aria-label="Close">✕</button>
-    <div class="modal-body" id="qvBody"></div>
-  </dialog>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
-  <script src="app.js"></script>
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>

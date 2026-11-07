@@ -1,105 +1,127 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bloom Market — Fresh Groceries Delivered</title>
-  <meta name="description" content="Bloom Market is a grocery delivery store demo with quantity steppers, delivery progress, and delivery slot picker." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header class="header">
-    <div class="container header-row">
-      <a href="#" class="logo"><span class="leaf">🌿</span> bloom<span>market</span></a>
-      <div class="deliver-to">
-        <small>Deliver to</small>
-        <button id="zipBtn">📍 <span id="zipLabel">Set postcode</span></button>
-      </div>
-      <form class="search" role="search" id="searchForm">
-        <input type="search" id="search" placeholder="Search apples, bread, oat milk…" aria-label="Search groceries" />
-      </form>
-      <button class="basket-btn" id="basketToggle" aria-controls="basket" aria-expanded="false">
-        🧺 <span id="basketTotalTop">$0.00</span>
-      </button>
-    </div>
-  </header>
-
-  <div class="container page">
-    <nav class="sidebar" aria-label="Aisles">
-      <h2>Aisles</h2>
-      <ul id="aisles"></ul>
-      <div class="promo-card">
-        <strong>Fresh Fridays</strong>
-        <p>20% off all produce every Friday.</p>
-      </div>
-    </nav>
-
-    <main>
-      <section class="banner">
-        <div>
-          <h1>Farm-fresh groceries,<br />at your door in 60 min.</h1>
-          <p>Free delivery over $35. Local farms, fair prices.</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Bloom Market — Fresh Groceries Delivered</title>
+    <meta
+      name="description"
+      content="Bloom Market is a grocery delivery store demo with quantity steppers, delivery progress, and delivery slot picker."
+    />
+    <meta name="theme-color" content="#2f8f4e" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bloom Market — Fresh Groceries Delivered" />
+    <meta
+      property="og:description"
+      content="Bloom Market is a grocery delivery store demo with quantity steppers, delivery progress, and delivery slot picker."
+    />
+    <meta name="twitter:card" content="summary" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232f8f4e'/%3E%3Ctext x='16' y='22.5' font-family='Arial,sans-serif' font-size='18' font-weight='700' text-anchor='middle' fill='%23ffffff'%3EB%3C/text%3E%3C/svg%3E"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container header-row">
+        <a href="#" class="logo"><span class="leaf">🌿</span> bloom<span>market</span></a>
+        <div class="deliver-to">
+          <small>Deliver to</small>
+          <button id="zipBtn">📍 <span id="zipLabel">Set postcode</span></button>
         </div>
-        <div class="banner-emoji" aria-hidden="true">🥕🥑🍓</div>
-      </section>
-
-      <div class="list-head">
-        <h2 id="aisleTitle">All groceries</h2>
-        <label class="toggle"><input type="checkbox" id="organicOnly" /> <span>Organic only</span></label>
+        <form class="search" role="search" id="searchForm">
+          <input
+            type="search"
+            id="search"
+            placeholder="Search apples, bread, oat milk…"
+            aria-label="Search groceries"
+          />
+        </form>
+        <button class="basket-btn" id="basketToggle" aria-controls="basket" aria-expanded="false">
+          🧺 <span id="basketTotalTop">$0.00</span>
+        </button>
       </div>
-      <div class="products" id="products"></div>
-      <p class="empty-msg" id="emptyMsg" hidden>No groceries found. Try another search.</p>
-    </main>
+    </header>
 
-    <aside class="basket" id="basket" aria-label="Basket">
-      <div class="basket-head">
-        <h2>Your basket</h2>
-        <button class="close" id="basketClose" aria-label="Close basket">✕</button>
-      </div>
-      <div class="delivery-meter" id="deliveryMeter"></div>
-      <ul class="basket-list" id="basketList"></ul>
+    <div class="container page">
+      <nav class="sidebar" aria-label="Aisles">
+        <h2>Aisles</h2>
+        <ul id="aisles"></ul>
+        <div class="promo-card">
+          <strong>Fresh Fridays</strong>
+          <p>20% off all produce every Friday.</p>
+        </div>
+      </nav>
 
-      <div class="slot-picker">
-        <h3>Delivery slot</h3>
-        <div class="days" id="days" role="tablist"></div>
-        <div class="slots" id="slots"></div>
-      </div>
+      <main>
+        <section class="banner">
+          <div>
+            <h1>Farm-fresh groceries,<br />at your door in 60 min.</h1>
+            <p>Free delivery over $35. Local farms, fair prices.</p>
+          </div>
+          <div class="banner-emoji" aria-hidden="true">🥕🥑🍓</div>
+        </section>
 
-      <div class="totals">
-        <div><span>Items</span><span id="tItems">$0.00</span></div>
-        <div><span>Delivery</span><span id="tDelivery">$0.00</span></div>
-        <div class="grand"><span>Total</span><span id="tTotal">$0.00</span></div>
-      </div>
-      <button class="cta" id="placeOrder" disabled>Place order</button>
-      <p class="hint" id="orderHint"></p>
-    </aside>
-  </div>
+        <div class="list-head">
+          <h2 id="aisleTitle">All groceries</h2>
+          <label class="toggle"><input type="checkbox" id="organicOnly" /> <span>Organic only</span></label>
+        </div>
+        <div class="products" id="products"></div>
+        <p class="empty-msg" id="emptyMsg" hidden>No groceries found. Try another search.</p>
+      </main>
 
-  <dialog id="zipDialog" class="zip-dialog">
-    <form method="dialog" id="zipForm">
-      <h2>Where should we deliver?</h2>
-      <p>Enter a 5-digit postcode to check availability.</p>
-      <input id="zipInput" inputmode="numeric" maxlength="5" placeholder="e.g. 94110" aria-label="Postcode" />
-      <p class="zip-error" id="zipError" role="alert"></p>
-      <div class="dialog-actions">
-        <button value="cancel" formnovalidate class="ghost">Cancel</button>
-        <button id="zipSave" value="save" class="cta">Save</button>
-      </div>
-    </form>
-  </dialog>
+      <aside class="basket" id="basket" aria-label="Basket">
+        <div class="basket-head">
+          <h2>Your basket</h2>
+          <button class="close" id="basketClose" aria-label="Close basket">✕</button>
+        </div>
+        <div class="delivery-meter" id="deliveryMeter"></div>
+        <ul class="basket-list" id="basketList"></ul>
 
-  <div class="order-done" id="orderDone" hidden>
-    <div class="done-card">
-      <div class="check">✓</div>
-      <h2>Order placed!</h2>
-      <p id="doneText"></p>
-      <button class="cta" id="doneClose">Keep shopping</button>
+        <div class="slot-picker">
+          <h3>Delivery slot</h3>
+          <div class="days" id="days" role="tablist"></div>
+          <div class="slots" id="slots"></div>
+        </div>
+
+        <div class="totals">
+          <div><span>Items</span><span id="tItems">$0.00</span></div>
+          <div><span>Delivery</span><span id="tDelivery">$0.00</span></div>
+          <div class="grand"><span>Total</span><span id="tTotal">$0.00</span></div>
+        </div>
+        <button class="cta" id="placeOrder" disabled>Place order</button>
+        <p class="hint" id="orderHint"></p>
+      </aside>
     </div>
-  </div>
 
-  <script src="app.js"></script>
-</body>
+    <dialog id="zipDialog" class="zip-dialog">
+      <form method="dialog" id="zipForm">
+        <h2>Where should we deliver?</h2>
+        <p>Enter a 5-digit postcode to check availability.</p>
+        <input id="zipInput" inputmode="numeric" maxlength="5" placeholder="e.g. 94110" aria-label="Postcode" />
+        <p class="zip-error" id="zipError" role="alert"></p>
+        <div class="dialog-actions">
+          <button value="cancel" formnovalidate class="ghost">Cancel</button>
+          <button id="zipSave" value="save" class="cta">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="order-done" id="orderDone" hidden>
+      <div class="done-card">
+        <div class="check">✓</div>
+        <h2>Order placed!</h2>
+        <p id="doneText"></p>
+        <button class="cta" id="doneClose">Keep shopping</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>
